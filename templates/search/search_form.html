@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск по категории</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function validateForm(event) {
+            const categoryInput = document.getElementById('prod_category');
+            const errorMessage = document.getElementById('error-message');
+            const categoryValue = categoryInput.value;
+            const pattern = /^[А-ЯЁ][а-яё]*$/;
+
+            // Очищаем предыдущее сообщение об ошибке
+            errorMessage.textContent = '';
+
+            // Проверяем, соответствует ли введенная категория регулярному выражению
+            if (!pattern.test(categoryValue)) {
+                // Показываем сообщение об ошибке
+                errorMessage.textContent = 'Категория должна начинаться с заглавной буквы и содержать только кириллицу.';
+                categoryInput.value = '';  // Очищаем форму
+                event.preventDefault();  // Блокируем отправку формы
+                return false;  // Возвращаем false для отмены отправки формы
+            }
+
+            return true;  // Валидация пройдена, разрешаем отправку формы
+        }
+    </script>
+</head>
+<body>
+  {% include 'nav.html' %}
+    <div class="container mt-5">
+        <h1 class="text-center">Поиск по категории</h1>
+
+        <!-- Форма поиска -->
+        <form method="POST" action="{{ url_for('search_category') }}" onsubmit="return validateForm(event);">
+            <div class="form-group">
+                <label for="prod_category">Введите категорию продукта:</label>
+                <input type="text" id="prod_category" name="prod_category" class="form-control" placeholder="Введите категорию" required>
+            </div>
+
+            <!-- Место для отображения сообщения об ошибке -->
+            <div id="error-message" class="text-danger mt-2"></div>
+            <div align="center">
+            <button type="submit" class="btn btn-primary mt-3">Найти</button>
+            </div>
+        </form>
+    </div>
+  {% include 'footer.html' %}
+    <!-- Подключаем Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

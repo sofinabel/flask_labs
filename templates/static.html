@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- comment -->
+<head>
+    <meta charset="UTF-8">
+    <title>Static</title>
+</head>
+<body>
+
+<div align="center">
+    <img src="https://www.steroglass.it/sites/default/files/images/covers/settori/2022-08/settore-alimentare_0.png">
+    <h2>Отделы нашего супермаркета</h2>
+    <p>
+        <ul>
+            {% for cat_name in categories %}
+            <li>{{ cat_name }}</li>
+            {% endfor %}
+        </ul>
+    </p>
+</div>
+</body>
+</html>

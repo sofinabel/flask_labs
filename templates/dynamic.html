@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ prod_title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+{% include 'nav.html' %}
+
+
+<div class="container mt-5">
+    <h1 class="text-center">{{ prod_title }}</h1>
+
+    <table class="table table-bordered mt-4">
+        <thead class="thead-dark">
+        <tr>
+            <th>Название продукта</th>
+            <th>Единица измерения</th>
+            <th>Цена (руб.)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.prod_name }}</td>
+            <td>{{ product.prod_measure }}</td>
+            <td>{{ product.prod_price }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+  {% include 'footer.html' %}
+</body>
+</html>
